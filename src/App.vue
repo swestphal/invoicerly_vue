@@ -8,13 +8,18 @@
         <div class="navbar-end">
           <template v-if="$store.state.isAuthenticated">
             <router-link to="/dashboard" class="navbar-item">Dashboard</router-link>
-          </template>
-          <template v-else>
-             <router-link to="/" class="navbar-item">Home</router-link>
             <div class="navbar-item">
               <div class="buttons">
-                 <router-link to="/sign-up" class="button is-success">Sign up</router-link>
-                 <router-link to="/log-in" class="button is-success">Log in</router-link>
+                <router-link to="/dashboard/my-account" class="button is-light">My account</router-link>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            <router-link to="/" class="navbar-item">Home</router-link>
+            <div class="navbar-item">
+              <div class="buttons">
+                <router-link to="/signup" class="button is-success">Sign up</router-link>
+                <router-link to="/login" class="button is-success">Log in</router-link>
               </div>
             </div>
           </template>
@@ -33,21 +38,21 @@
 </template>
 
 <script>
-  import axios from 'axios'
+import axios from 'axios'
 
-  export default {
-    name:'APP',
-    beforeCreate() {
-      this.$store.commit('initializeStore')
+export default {
+  name: 'APP',
+  beforeCreate() {
+    this.$store.commit('initializeStore')
 
-      const token = this.$store.state.token
-      if(token) {
-        axios.defaults.headers.common['Authorization'] = "Token" + token
-      } else{
-        axios.defaults.headers.common['Authorization'] = ""
-      }
+    const token = this.$store.state.token
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = "Token" + token
+    } else {
+      axios.defaults.headers.common['Authorization'] = ""
     }
   }
+}
 </script>
 <style lang="scss">
 @import '../node_modules/bulma';

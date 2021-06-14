@@ -1,33 +1,44 @@
-import {createStore} from 'vuex'
-import router from "../router";
+import { createStore } from 'vuex'
 
 export default createStore({
-    state: {
-        user: {
-            username: ''
-        },
-        isAuthenticated: false,
-        token: ''
+  state: {
+    user: {
+      id: '',
+      username: ''
     },
-    mutations: {
-        initializeStore(state) {
-            if (localStorage.getItem('token')) {
-                state.token = localStorage.getItem('token')
-                state.isAuthenticated = true
-            } else {
-                state.token = ''
-                state.isAuthenticated = false
-            }
-        },
-        setToken(state,token) {
-            state.token = token
-            state.isAuthenticated = true
-        },
-        removeToken(state) {
-            state.token=''
-            state.isAuthenticated=false
-        }
+    isAuthenticated: false,
+    token: ''
+  },
+  mutations: {
+    initializeStore(state) {
+      if (localStorage.getItem('token')) {
+        state.token = localStorage.getItem('token')
+        state.isAuthenticated = true
+        state.user.username = localStorage.getItem('username')
+        state.user.id = localStorage.getItem('userid')
+      } else {
+        state.user.id = ''
+        state.user.username = ''
+        state.token = ''
+        state.isAuthenticated = false
+      }
     },
-    actions: {},
-    modules: {}
+    setToken(state, token) {
+      state.token = token
+      state.isAuthenticated = true
+    },
+    removeToken(state) {
+      state.user.id = ''
+      state.user.username = ''
+      state.token = ''
+      state.isAuthenticated = false
+    },
+    setUser(state, user) {
+      state.user = user
+    }
+  },
+  actions: {
+  },
+  modules: {
+  }
 })

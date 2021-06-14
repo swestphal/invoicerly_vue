@@ -6,6 +6,7 @@ import Login from "../views/Login";
 import store from '../store';
 import Clients from "../views/dashboard/Clients";
 import Client from "../views/dashboard/Client";
+import AddClient from "../views/dashboard/AddClient";
 import MyAccount from "../views/MyAccount";
 const routes = [
     {
@@ -59,6 +60,14 @@ const routes = [
         path: '/dashboard/clients/:id',
         name: 'Client',
         component: Client,
+        meta: {
+            requireLogin: true
+        }
+    },
+     {
+        path: '/dashboard/clients/add',
+        name: 'AddClient',
+        component: AddClient,
         meta: {
             requireLogin: true
         }

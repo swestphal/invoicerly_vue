@@ -5,6 +5,7 @@
         <h1 class="title">
           Clients
         </h1>
+        <router-link :to="{name:'AddClient'}" class="button is-light">Add Client</router-link>
       </div>
       <div class="column is-3" v-for="client in clients" v-bind:key="client.id">
         <div class="box">

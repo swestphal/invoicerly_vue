@@ -9,6 +9,7 @@ import Client from "../views/dashboard/Client";
 import AddClient from "../views/dashboard/AddClient";
 import EditClient from "../views/dashboard/EditClient";
 import MyAccount from "../views/MyAccount";
+import EditTeam from "../views/dashboard/EditTeam";
 const routes = [
     {
         path: '/',
@@ -49,6 +50,14 @@ const routes = [
             requireLogin: true
         }
     },
+     {
+        path: '/dashboard/my-account/edit-team',
+        name: 'EditTeam',
+        component: EditTeam,
+        meta: {
+            requireLogin: true
+        }
+    },
     {
         path: '/dashboard/clients',
         name: 'Clients',
@@ -81,6 +90,7 @@ const routes = [
             requireLogin: true
         }
     },
+
 ]
 
 const router = createRouter({

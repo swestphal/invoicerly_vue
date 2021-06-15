@@ -7,6 +7,7 @@ import store from '../store';
 import Clients from "../views/dashboard/Clients";
 import Client from "../views/dashboard/Client";
 import AddClient from "../views/dashboard/AddClient";
+import EditClient from "../views/dashboard/EditClient";
 import MyAccount from "../views/MyAccount";
 const routes = [
     {
@@ -68,6 +69,14 @@ const routes = [
         path: '/dashboard/clients/add',
         name: 'AddClient',
         component: AddClient,
+        meta: {
+            requireLogin: true
+        }
+    },
+     {
+        path: '/dashboard/clients/:id/edit',
+        name: 'EditClient',
+        component: EditClient,
         meta: {
             requireLogin: true
         }

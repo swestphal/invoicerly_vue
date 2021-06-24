@@ -35,7 +35,7 @@
 
 <script>
 import axios from "axios";
-
+import {toast} from 'bulma-toast'
 export default {
   name: 'EditTeam',
   data() {
@@ -61,6 +61,13 @@ export default {
       axios
           .patch(`/api/v1/teams/${this.team.id}/`, this.team)
           .then(response => {
+            toast( {
+              message:'The changes was saved',
+              type:'is-success',
+              dismissible:true,
+              duration:2000,
+              position:'bottom-right'
+            })
             this.$router.push('/dashboard/my-account')
           })
           .catch(error => {

@@ -10,6 +10,8 @@ import AddClient from "../views/dashboard/AddClient";
 import EditClient from "../views/dashboard/EditClient";
 import MyAccount from "../views/MyAccount";
 import EditTeam from "../views/dashboard/EditTeam";
+import Invoices from "../views/dashboard/Invoices";
+import Invoice from "../views/dashboard/Invoice";
 const routes = [
     {
         path: '/',
@@ -91,6 +93,22 @@ const routes = [
         }
     },
 
+     {
+        path: '/dashboard/invoices/:id',
+        name: 'Invoice',
+        component: Invoice,
+        meta: {
+            requireLogin: true
+        }
+    },
+    {
+        path: '/dashboard/invoices',
+        name: 'Invoices',
+        component: Invoices,
+        meta: {
+            requireLogin: true
+        }
+    },
 ]
 
 const router = createRouter({

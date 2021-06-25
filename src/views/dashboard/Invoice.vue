@@ -2,14 +2,18 @@
   <div class="page-invoices">
     <div class="columns is-multiline">
       <div class="column is-12">
-        <div class="title">
+        <h1 class="title">
           Invoice - {{ invoice.invoice_number }}
-        </div>
+        </h1>
+        <hr>
+        <button @click="getPdf()" class="button is-dark">Download PDF</button>
         <div class="column is-12">
           <p><strong>{{ invoice.client_name }}</strong></p>
           <p v-if="invoice.client_address1">{{ invoice.client_address1 }}</p>
           <p v-if="invoice.client_address2">{{ invoice.client_address2 }}</p>
-          <p v-if="invoice.client_zipcode || invoice.client_place">{{ invoice.client_zipcode }} {{ invoice.client_place }}</p>
+          <p v-if="invoice.client_zipcode || invoice.client_place">{{ invoice.client_zipcode }} {{
+              invoice.client_place
+            }}</p>
           <p v-if="invoice.client_country">{{ invoice.client_country }}</p>
         </div>
         <div class="column is-12">
@@ -42,6 +46,7 @@
 <script>
 import axios from 'axios'
 
+const fileDownload = require('js-file-download')
 export default {
   name: 'Invoice',
   data() {
@@ -50,8 +55,8 @@ export default {
       items: []
     }
   },
-   mounted() {
-     this.getInvoice()
+  mounted() {
+    this.getInvoice()
 
   },
   methods: {
@@ -67,6 +72,17 @@ export default {
             console.log(JSON.stringify(error))
           })
     },
+    getPdf() {
+      const invoiceID = this.$route.params.id
+      axios
+          .get(`/api/v1/invoices/${invoiceID}/generate_pdf/`, {responseType: 'blob',})
+          .then(response => {
+            fileDownload(response.data, `invoice_${invoiceID}.pdf`)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+    }
 
   }
 }

@@ -12,6 +12,8 @@ import MyAccount from "../views/MyAccount";
 import EditTeam from "../views/dashboard/EditTeam";
 import Invoices from "../views/dashboard/Invoices";
 import Invoice from "../views/dashboard/Invoice";
+import AddInvoice from "../views/dashboard/AddInvoice";
+
 const routes = [
     {
         path: '/',
@@ -52,7 +54,7 @@ const routes = [
             requireLogin: true
         }
     },
-     {
+    {
         path: '/dashboard/my-account/edit-team',
         name: 'EditTeam',
         component: EditTeam,
@@ -76,7 +78,7 @@ const routes = [
             requireLogin: true
         }
     },
-     {
+    {
         path: '/dashboard/clients/add',
         name: 'AddClient',
         component: AddClient,
@@ -84,19 +86,10 @@ const routes = [
             requireLogin: true
         }
     },
-     {
+    {
         path: '/dashboard/clients/:id/edit',
         name: 'EditClient',
         component: EditClient,
-        meta: {
-            requireLogin: true
-        }
-    },
-
-     {
-        path: '/dashboard/invoices/:id',
-        name: 'Invoice',
-        component: Invoice,
         meta: {
             requireLogin: true
         }
@@ -109,6 +102,22 @@ const routes = [
             requireLogin: true
         }
     },
+    {
+        path: '/dashboard/invoices/:id',
+        name: 'Invoice',
+        component: Invoice,
+        meta: {
+            requireLogin: true
+        }
+    },
+    {
+        path: '/dashboard/invoices/add',
+        name: 'AddInvoice',
+        component: AddInvoice,
+        meta: {
+            requireLogin: true
+        }
+    }
 ]
 
 const router = createRouter({
@@ -117,8 +126,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated){
-    next('/login')
+    if (to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated) {
+        next('/login')
     } else {
         next()
     }

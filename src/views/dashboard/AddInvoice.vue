@@ -52,7 +52,21 @@
 
                 <button class="button is-light" @click="addItem">+</button>
             </div>
-
+          <div class="column is-12">
+            <h2 class="is-size-5 mb-4">Misc</h2>
+            <div class="field">
+              <label>Due days</label>
+              <div class="control">
+                <input type="number" class="input" v-model="due_days">
+              </div>
+            </div>
+            <div class="field">
+              <label>Sender reference</label>
+              <div class="control">
+                <input type="text" class="input" v-model="sender_reference">
+              </div>
+            </div>
+          </div>
             <div class="column is-12">
                 <h2 class="is-size-5 mb-4">Misc</h2>
 

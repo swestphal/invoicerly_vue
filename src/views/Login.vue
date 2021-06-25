@@ -29,6 +29,8 @@
             </div>
           </div>
         </form>
+        <hr>
+        <router-link to="/signup">Sign Up</router-link>
       </div>
     </div>
   </div>

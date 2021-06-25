@@ -29,6 +29,8 @@
             </div>
           </div>
         </form>
+        <hr>
+        <router-link to="/login">Log in</router-link>
       </div>
     </div>
   </div>

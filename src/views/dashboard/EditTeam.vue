@@ -24,6 +24,12 @@
           </div>
         </div>
         <div class="field">
+          <label>Bank account</label>
+          <div class="control">
+            <input type="text" class="input" v-model="team.bank_account">
+          </div>
+        </div>
+        <div class="field">
           <div class="control">
             <button class="button is-success" @click="submitForm">Save</button>
           </div>
